@@ -4,6 +4,9 @@
 */
 
 function factorial(num) {
+    if(num == 0) {
+        return 1;
+    }
     return (num != 1) ? num * factorial(num - 1) : 1;
 }
 
@@ -45,7 +48,7 @@ function maxValuesInArrays(arrays) {
 
 function truncate(str, maxlength) {
     return (str.length > maxlength) ?
-        str.slice(0, maxlength - 1) + '…' : str;
+        str.slice(0, maxlength) + '...' : str;
 }
 
 /*
@@ -56,11 +59,17 @@ function truncate(str, maxlength) {
 function firstToUp(str) {
     if (!str) return str;
 
+    str = str.toLowerCase()
+
     words = str.split(' ');
     var wordsUp = [];
 
     for (let word of words) {
-        wordsUp.push(word[0].toUpperCase() + word.slice(1));
+        if (word) {
+            wordsUp.push(word[0].toUpperCase() + word.slice(1));
+        } else {
+            wordsUp.push(word);
+        }
     }
     return wordsUp.join(' ');
 }
@@ -127,12 +136,10 @@ function splitArray(array, size) {
 */
 
 function fillArray(array, num) {
-    if (num === 0) {
+    if (num <= 0) {
         return array;
     } else {
         array.push(num);
         return fillArray(array, --num);
     }
 }
-
-
