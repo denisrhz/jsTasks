@@ -1,13 +1,17 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+
 /*
 1. Написать функцию, которая на вход принимает
 целое число и возвращает факториал этого числа.
 */
 
 function factorial(num) {
-    if(num == 0) {
+    if (num === 0) {
         return 1;
     }
-    return (num != 1) ? num * factorial(num - 1) : 1;
+
+    return (num !== 1) ? num * factorial(num - 1) : 1;
 }
 
 /*
@@ -16,13 +20,16 @@ function factorial(num) {
 */
 
 function lenLongWord(str) {
-    var words = str.split(' ');
-    var longWord = 0;
-    for(var i = 0; i < words.length; i++){
-        if(words[i].length > longWord){
+    let words = str.split(' ');
+
+    let longWord = 0;
+
+    for(let i = 0; i < words.length; i++) {
+        if(words[i].length > longWord) {
             longWord = words[i].length;
+            }
         }
-    }
+
     return longWord;
 }
 
@@ -33,10 +40,12 @@ function lenLongWord(str) {
 */
 
 function maxValuesInArrays(arrays) {
-    var result = [];
+    let result = [];
+
     for (let arr of arrays) {
         result.push(Math.max(...arr));
     }
+
     return result;
 }
 
@@ -62,7 +71,7 @@ function firstToUp(str) {
     str = str.toLowerCase()
 
     words = str.split(' ');
-    var wordsUp = [];
+    let wordsUp = [];
 
     for (let word of words) {
         if (word) {
@@ -113,6 +122,7 @@ function isContain([firstStr, secondStr]) {
             return false;
         }
     }
+
     return true;
 }
 
@@ -123,10 +133,12 @@ function isContain([firstStr, secondStr]) {
 */
 
 function splitArray(array, size) {
-    var result = [];
+    let result = [];
+
     for (let i = 0; i < array.length; i += size) {
         result.push(array.slice(i, i + size))
     }
+
     return result;
 }
 

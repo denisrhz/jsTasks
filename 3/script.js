@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 /*
 1. Написать функцию, которая принимает на вход массив из двух чисел и возвращает
 сумму этих двух чисел плюс сумму всех чисел между ними. Наименьшее число не
@@ -5,13 +7,15 @@
 */
 
 function sumAll(array) {
-    var result = 0;
-    var minValue = Math.min(...array)
-    var maxValue = Math.max(...array)
+    let result = 0;
+    let minValue = Math.min(...array);
+    let maxValue = Math.max(...array);
+
     while (minValue <= maxValue) {
         result += minValue;
         minValue++;
     }
+
     return result;
 }
 
@@ -43,7 +47,7 @@ function delArgFromArray(array, ...args) {
 */
 
 function whatIsInAName(objArray, searchObj) {
-    var cloneArray = objArray.slice()
+    let cloneArray = objArray.slice()
 
     for (let i = 0; i < cloneArray.length; i++) {
         for (searchKey in searchObj)
@@ -52,6 +56,7 @@ function whatIsInAName(objArray, searchObj) {
                 break;
             }
     }
+
     return cloneArray;
 }
 
@@ -73,6 +78,7 @@ function spinalCase(str) {
 
 function myReplace(str, subStr, newSubStr) {
     subStr = new RegExp(subStr, "ig");
+
     return str.replace(subStr, newSubStr);
 }
 
@@ -84,24 +90,28 @@ undefined. Например: fearNotLetter("abce") должна вернуть "
 
 function fearNotLetter(str) {
     let lettersArr=str.split("").sort();
-    let newArr=[];
-    for(let i=0;i<lettersArr.length;i++){
-        lettersArr[i]=lettersArr[i].charCodeAt()-36;
+    let newArr = [];
+
+    for (let i = 0; i < lettersArr.length; i++) {
+        lettersArr[i] = lettersArr[i].charCodeAt() - 36;
     }
-    let end=lettersArr[lettersArr.length-1];
-    for(let i=0;i<end;i++){
-        if(lettersArr[i]==end){
+
+    let end = lettersArr[lettersArr.length - 1];
+
+    for (let i = 0; i < end; i++ ){
+        if (lettersArr[i] === end){
             break;
         }
-        else{
-            if(lettersArr[i]!==lettersArr[i+1]-1){
-                let index=lettersArr.indexOf(lettersArr[i]);
-                let arg=lettersArr[i]+1;
-                lettersArr.splice(index+1,0,arg);
+        else {
+            if (lettersArr[i] !== lettersArr[i + 1] - 1){
+                let index = lettersArr.indexOf(lettersArr[i]);
+                let arg = lettersArr[i] + 1;
+                lettersArr.splice(index + 1, 0, arg);
                 newArr.push(arg);
             }
         }
     }
+
     return newArr;
 }
 
@@ -111,8 +121,19 @@ function fearNotLetter(str) {
 первоначальному порядку.
 */
 
-function f8() {
-    ;
+function uniqueArray(...arr) {
+    let newArr = [];
+
+    for (let i = 0; i < arr.length; i++){
+
+        for (let j = 0; j < arr[i].length; j++){
+            if (!newArr.includes(arr[i][j])){
+                newArr.push(arr[i][j])
+            }
+        }
+    }
+
+    return newArr;
 }
 
 /*
@@ -122,25 +143,29 @@ function f8() {
 
 
 function replacementSpecialCharacters(str) {
-    let newStr=str.split("");
-    for(let i=0;i<newStr.length;i++){
-        if(newStr[i]=="&"){
-            newStr[i]="&amp";
+    let newStr = str.split("");
+
+    for (let i = 0; i < newStr.length; i++) {
+        switch (newStr[i]) {
+            case "&":
+                newStr[i] = "&amp";
+                break;
+            case "<":
+                newStr[i] = "&lt";
+                break;
+            case ">":
+                newStr[i] = "&gt";
+                break;
+            case '"':
+                newStr[i] = "&quot";
+                break;
+            case "'":
+                newStr[i] = "&apos";
+                break;
         }
-        else if(newStr[i]=="<"){
-            newStr[i]="&lt";
-        }
-        else if(newStr[i]==">"){
-            newStr[i]="&gt";
-        }
-        else if(newStr[i]=='"'){
-            newStr[i]="&quot";
-        }
-        else if(newStr[i]=="'"){
-            newStr[i]="&apos";
-        }
-    }
+
     return newStr.join("");
+    }
 }
 
 /*
@@ -149,13 +174,16 @@ function replacementSpecialCharacters(str) {
 
 function summationOfPrimes(num) {
     let arrNum=[];
+
     nextPrime:
+
     for (let i = 2; i <= num; i++) {
         for (let j = 2; j < i; j++) { 
             if (i % j == 0) continue nextPrime; 
         }
         arrNum.push(i);
     }
+
     return arrNum.map(i=>x+=i, x=0).reverse()[0]
 }
 
@@ -167,14 +195,15 @@ function summationOfPrimes(num) {
 */
 
 function deleteArr(arr, fun) {
-    for(let i=0;i<arr.length;i++){
-        if(!fun(arr[i])){
+    for (let i = 0;i < arr.length; i++) {
+        if (!fun(arr[i])) {
             delete arr[i];
         }
         else {
             break;
         }
     }
+
     return arr;
 }
 
@@ -183,14 +212,15 @@ function deleteArr(arr, fun) {
 одномерный массив. Например: steamrollArray([1, [2], [3, [[4]]]]) должна вернуть [1, 2, 3, 4]
 */
 
-function removingNesting(arr,newArr=[]) {
+function removingNesting(arr, newArr=[]) {
     for (let elem of arr) {
 		if (typeof elem == 'object') {
 			removingNesting(elem,newArr);
 		} else {
             newArr.push(elem);
 		}
-	}
+    }
+
     return newArr;
 }
 
@@ -201,12 +231,12 @@ function removingNesting(arr,newArr=[]) {
 */
 
 function sumArg(numA,numB) {
-    if(numB==undefined){
+    if (numB == undefined) {
         return function (numB) {
-            return numA+numB;
+            return numA + numB;
         }
     }
-    else{
-        return numB+numA;
+    else {
+        return numB + numA;
     }
 }
